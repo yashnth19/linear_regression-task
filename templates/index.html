@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Search Page</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Select the Task</h1>
+
+    <div class="form">
+<!--        #form is a field to fill data-->
+        <form action="/review" method="GET">
+<!--            #Click here to generate and view the Pandas_Profiling Report-->
+            <input type="submit" value="Click to view Profile Report">
+        </form>
+    </div>
+
+    <div class="form">
+        <form action="/multicollinearity_check" method="GET">
+<!--            #post is send data without being visible in the url, by calling the '/review' function-->
+<!--            <input type="text" name="content" id="content">-->
+            <input type="submit" value="Click to Check for MULTICOLLINEARITY">
+        </form>
+    </div>
+
+    <div class="form">
+        <form action="/Lin_reg" method="POST">
+<!--            #post is send data without being visible in the url, by calling the '/review' function-->
+            Select the Regularization Technique
+<select id="Lin_Reg_Type" name="Lin_Reg_Type">
+  <option value="Without_Regularization">Without_Regularization</option>
+  <option value="Lasso">Lasso</option>
+  <option value="Ridge">Ridge</option>
+  <option value="Elastic_Net">Elastic_Net</option>
+</select>
+            Enter the train/test split ratio value (0 -1)
+            <input type="text" name="sp" id="sp">
+            Enter the seed value
+            <input type="text" name="seed" id="seed">
+            <input type="submit" value="Click  for LinearRegression">
+        </form>
+    </div>
+
+</div>
+{% endblock %}
