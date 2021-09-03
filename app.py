@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request,jsonify
-from flask_cors import CORS,cross_origin #falsk cors is used to run from different regions
+# from flask_cors import CORS,cross_origin #falsk cors is used to run from different regions
 import requests
 
 
 import pandas as pd
-from pandas_profiling import ProfileReport
+# from pandas_profiling import ProfileReport
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import Ridge, Lasso, RidgeCV, LassoCV,ElasticNet,ElasticNetCV, LinearRegression
@@ -20,17 +20,17 @@ scaler =StandardScaler()
 arr=scaler.fit_transform(x)
 lr=LinearRegression()
 @app.route('/',methods=['GET'])  # route to display the home page
-@cross_origin() #not required for local deployment
+# @cross_origin() #not required for local deployment
 def homePage():
     return render_template("index.html")
 
 @app.route('/review',methods=['POST','GET'])
-@cross_origin() #for deploying accross origins
+# @cross_origin() #for deploying accross origins
 def index():
         return render_template('report.html')
 
 @app.route('/multicollinearity_check',methods=['POST','GET'])
-@cross_origin()
+# @cross_origin()
 def multicollinearity_check():
     vif_df=pd.DataFrame()
     vif_df['vif'] = [variance_inflation_factor(arr, i) for i in range(arr.shape[1])]
@@ -47,7 +47,7 @@ def multicollinearity_check():
     return render_template('results.html',mydict=mydict)
 
 @app.route('/Lin_reg',methods=['POST','GET'])
-@cross_origin()
+# @cross_origin()
 def Lin_reg():
     mydict2=[]
     if request.method=="POST":
